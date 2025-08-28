@@ -14,8 +14,9 @@
       height: 100%;
       background: #000;
       overflow: hidden;
-      font-family: 'Courier New', monospace;
+      font-family: Arial, 'Courier New', monospace;
       color: white;
+      text-transform: none; /* không ép hoa/thường */
     }
 
     #rotate-warning {
@@ -49,6 +50,7 @@
       color: #fff;
       text-shadow: 0 0 15px #ff69b4, 0 0 30px #ff69b4;
       z-index: 1;
+      text-transform: none; /* đảm bảo giữ nguyên chữ */
     }
 
     @keyframes fadeInOut {
@@ -140,10 +142,7 @@
       let index = 0;
 
       function showNext() {
-        if (index
-
-          <
-          sequence.length) {
+        if (index < sequence.length) {
           message.innerText = sequence[index];
           message.classList.remove('show');
           void message.offsetWidth;
@@ -156,5 +155,4 @@
     }
   </script>
 </body>
-
 </html>
