@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday To Cẩm Hường 🎉</title>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+      font-family: 'Courier New', monospace;
+      color: white;
+    }
+
+    #rotate-warning {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      background: #000;
+      color: #fff;
+      font-size: 20px;
+      flex-direction: column;
+    }
+
+    #birthday-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    #message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      font-size: 40px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 0 15px #ff69b4, 0 0 30px #ff69b4;
+      z-index: 1;
+    }
+
+    @keyframes fadeInOut {
+      0% {
+        opacity: 0
+      }
+
+      10% {
+        opacity: 1
+      }
+
+      90% {
+        opacity: 1
+      }
+
+      100% {
+        opacity: 0
+      }
+    }
+
+    .show {
+      animation: fadeInOut 3s linear;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="rotate-warning">📱 Hãy xoay ngang điện thoại 📱</div>
+  <canvas id="birthday-canvas"></canvas>
+  <div id="message"></div>
+
+  <script>
+    const warning = document.getElementById('rotate-warning');
+    const canvas = document.getElementById('birthday-canvas');
+    const ctx = canvas.getContext('2d');
+    const message = document.getElementById('message');
+
+    function checkOrientation() {
+      if (window.innerWidth > window.innerHeight) {
+        warning.style.display = 'none';
+        startAnimation();
+      } else {
+        warning.style.display = 'flex';
+        canvas.style.display = 'none';
+        message.style.display = 'none';
+      }
+    }
+
+    window.addEventListener('resize', checkOrientation);
+    checkOrientation();
+
+    function startAnimation() {
+      canvas.style.display = 'block';
+      message.style.display = 'block';
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const letters = "HappyBirthday✨".split("");
+      const fontSize = 16;
+      const columns = canvas.width / fontSize;
+      const drops = Array(Math.floor(columns)).fill(1);
+
+      function draw() {
+        ctx.fillStyle = 'rgba(0,0,0,0.1)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#ff69b4';
+        ctx.font = fontSize + "px monospace";
+        for (let i = 0; i < drops.length; i++) {
+          const text = letters[Math.floor(Math.random() * letters.length)];
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+      }
+      setInterval(draw, 40);
+
+      const sequence = [
+        "3", "2", "1",
+        "🎉 Happy Birthday 🎉",
+        "29.08.2004",
+        "Cẩm Hường",
+        "21+",
+        "Thêm một tuổi mới rồi đó nha 🎆",
+        "Chúc bà luôn xinh đẹp ❤️",
+        "Thật nhiều niềm vui & hạnh phúc! 🎊"
+      ];
+      let index = 0;
+
+      function showNext() {
+        if (index
+
+          <
+          sequence.length) {
+          message.innerText = sequence[index];
+          message.classList.remove('show');
+          void message.offsetWidth;
+          message.classList.add('show');
+          index++;
+          setTimeout(showNext, 3000);
+        }
+      }
+      showNext();
+    }
+  </script>
+</body>
+
+</html>
